@@ -1,56 +1,77 @@
-Task 5 – Exploratory Data Analysis (EDA): Titanic Dataset
-Objective
-Explore the Titanic passenger dataset using statistical summaries and visualizations to identify patterns, trends, missing values, and possible outliers.
-Project contents
-notebooks/Task5_Titanic_EDA.ipynb – step-by-step Jupyter Notebook
-eda_titanic.py – complete Python script
-data/ – dataset is downloaded here automatically on first run
-outputs/ – charts, cleaned dataset, and summary CSV are saved here after running
-EDA_Report.pdf – short project report
-requirements.txt – required Python libraries
-Dataset
-This project uses the public Titanic training dataset (891 rows, 12 columns). Source: https://github.com/datasciencedojo/datasets Raw CSV: https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv
-The notebook/script downloads the CSV automatically if data/titanic.csv is not present. Internet access is required for the first run. You can also download the CSV manually and place it inside the data folder with the name titanic.csv.
-How to run
-Option 1: Jupyter Notebook
-Download or clone this repository.
-Install dependencies: pip install -r requirements.txt
-Open notebooks/Task5_Titanic_EDA.ipynb in Jupyter Notebook or Google Colab.
-Run all cells from top to bottom.
-Option 2: Python script
-Open a terminal in the project folder.
-Run pip install -r requirements.txt
-Run python eda_titanic.py
-Android / Pydroid 3
-Install the packages listed in requirements.txt using Pydroid's Pip screen. Keep the project folders together, open eda_titanic.py, and run it. The first run needs internet to download the CSV.
+Task 5: Exploratory Data Analysis (EDA) --- Titanic Dataset
+Project overview
+This project explores the Titanic passenger dataset using Python, Pandas, NumPy, Matplotlib and Seaborn. The goal is to understand the dataset, examine missing values and distributions, identify relationships between passenger characteristics and survival, and communicate the findings through visualizations.
+This is a descriptive exploratory analysis. Relationships found in the data should not be interpreted as proof of cause and effect.
+Project files
+Keep these files together in the same folder:
+titanic_dataset.csv --- source dataset containing 891 passenger records and 12 columns.
+Task_5_Titanic_EDA.ipynb --- Jupyter Notebook containing the analysis code, charts, observations and conclusion.
+README.md --- project documentation.
+Tools and libraries
+Python 3
+Jupyter Notebook or JupyterLab
+Pandas
+NumPy
+Matplotlib
+Seaborn
+Installation
+Install the required packages from a terminal or command prompt:
+pip install pandas numpy matplotlib seaborn jupyter
+How to run the project
+Download or place titanic_dataset.csv and Task_5_Titanic_EDA.ipynb in the same folder.
+Open a terminal in that folder.
+Start Jupyter Notebook:
+jupyter notebook
+Open Task_5_Titanic_EDA.ipynb.
+Select Kernel → Restart & Run All (or Run All) to execute the analysis.
+Review the tables, charts, observations and conclusion produced by the notebook.
+The notebook reads the CSV using the relative filename titanic_dataset.csv. If the CSV is in a different folder, update the path in the pd.read_csv() statement.
+Dataset description
+The dataset has 891 rows and 12 original columns:
+Column                              Description
+PassengerId                       Unique passenger identifier
+Survived                          Survival indicator: 0 = did not survive, 1 = survived
+Pclass                            Passenger ticket class: 1, 2 or 3
+Name                              Passenger name
+Sex                               Passenger sex
+Age                               Passenger age
+SibSp                             Number of siblings or spouses aboard
+Parch                             Number of parents or children aboard
+Ticket                            Ticket number
+Fare                              Passenger fare
+Cabin                             Cabin identifier
+Embarked                          Port of embarkation
 Analysis performed
-Dataset shape, data types, info(), and describe()
-Missing-value and duplicate checks
-Data cleaning using median and mode imputation
-Count plot and age histogram
-Survival comparisons by sex and passenger class
-Fare boxplot and age-fare scatterplot
-Correlation heatmap and pairplot
-Export of cleaned dataset and EDA summary
-Main observations
-The commonly used Titanic training dataset contains 891 passenger records.
+The notebook carries out the following steps:
+Load and inspect data --- reads the CSV, displays the dataset shape and first rows, and checks data types with df.info().
+Descriptive statistics --- uses describe(include="all") to summarize the columns.
+Missing values and duplicates --- counts missing values and duplicate rows.
+Frequency counts --- examines values in Survived, Pclass, Sex, Embarked, SibSp and Parch.
+Prepare analysis column --- creates SurvivalStatus labels for chart readability and calculates the overall survival rate.
+Univariate analysis --- plots the age distribution and passenger survival counts.
+Bivariate analysis --- compares survival rates by sex and passenger class.
+Boxplot analysis --- compares fare distributions by survival status.
+Scatterplot analysis --- explores age versus fare, coloured by survival status.
+Pairplot --- compares selected numeric variables and survival groups.
+Correlation heatmap --- visualizes correlations among selected numeric columns.
+Findings and conclusion --- summarizes the patterns observed.
+Key findings recorded in the notebook
+The dataset contains 891 passengers and 12 original columns.
 The overall survival rate is approximately 38.4%.
-Female passengers had a higher survival rate than male passengers.
-First-class passengers generally had a higher survival rate than third-class passengers.
-Age and Cabin have missing values; Cabin has many missing entries.
-Fare values are right-skewed and include high-value observations.
-Note: Findings describe associations in this historical sample. They do not establish cause and effect.
-GitHub upload
-Extract the ZIP file.
-Open GitHub and create a new repository, for example Task-5-Titanic-EDA.
-Upload the files and folders from this project (not the ZIP file itself).
-Add a repository description: Exploratory Data Analysis of Titanic passenger data using Python, Pandas, Matplotlib and Seaborn.
-Commit the files.
-Interview questions
-What is EDA? EDA is the process of examining data using statistics and visualizations before further analysis.
-Which plots help check correlation? A correlation heatmap and pairplot are useful for numeric relationships.
-How do you handle skewed data? Inspect the distribution, consider a log transformation when appropriate, and use robust statistics such as the median.
-How can multicollinearity be detected? Check correlation between predictors and use VIF for a more formal check.
-What are univariate, bivariate, and multivariate analyses? They examine one, two, and three or more variables respectively.
-Heatmap vs pairplot? A heatmap summarizes pairwise numeric correlation; a pairplot shows pairwise scatterplots and distributions.
-How do you summarize insights? Report key patterns, missing values, outliers, limitations, and conclusions supported by charts/statistics.# Task-5
+More passengers did not survive than survived.
+Female passengers had a substantially higher survival rate than male passengers.
+First-class passengers had a higher survival rate than second- and third-class passengers.
+Fare values are right-skewed; survivors generally show a higher median fare.
+Age and fare do not show a strong simple linear relationship in the scatterplot.
+Age has 177 missing values, Cabin has 687 missing values, and Embarked has 2 missing values in the supplied CSV.
+The notebook does not silently remove outliers or fill missing values.
+These are descriptive observations from this dataset. They do not establish causation.
+Expected outputs
+When all notebook cells have run successfully, the notebook displays: - Dataset preview, structure and descriptive statistics - Missing-value and duplicate summaries - Frequency-count tables - Age histogram and survival count plot - Survival-rate bar plots by sex and passenger class - Fare boxplot - Age-versus-fare scatterplot - Pairplot - Correlation heatmap - Written observations and conclusion
+Notes
+Keep the CSV filename exactly as titanic_dataset.csv, unless you also change the filename in the notebook.
+The notebook adds a derived SurvivalStatus column during analysis; the original CSV is not modified.
+Missing values are reported but are not imputed in this exploratory analysis.
+For predictive modelling, decide how to handle missing values and other preprocessing steps before training a model.
+Author
+Add your name, course, institution and submission date here if required by your assignment.
